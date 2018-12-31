@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.5'
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+}
+
+dependencies {
+    compile "org.openjfx:javafx-graphics:11:win"
+    compile "org.openjfx:javafx-graphics:11:linux"
+    compile "org.openjfx:javafx-graphics:11:mac"
+
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile 'org.fulib:fulib:1.0.+'
+}
+
+javafx {
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+group 'eu.yeger'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+mainClassName = 'eu.yeger.komi.MainApp'
