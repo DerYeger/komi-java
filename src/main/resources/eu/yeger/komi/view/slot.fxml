@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="50.0" prefWidth="50.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.yeger.komi.controller.SlotController">
+   <children>
+      <Line fx:id="topLine" endX="25.0" endY="25.0" startX="25.0" visible="false" />
+      <Line fx:id="rightLine" endX="50.0" endY="25.0" startX="25.0" startY="25.0" visible="false" />
+      <Line fx:id="bottomLine" endX="25.0" endY="50.0" startX="25.0" startY="25.0" visible="false" />
+      <Line fx:id="leftLine" endX="25.0" endY="25.0" startY="25.0" visible="false" />
+      <Circle fx:id="pawnCircle" centerX="25.0" centerY="25.0" fill="RED" radius="23.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" />
+      <Button fx:id="slotButton" focusTraversable="false" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" opacity="0.0" prefHeight="20.0" prefWidth="20.0" text="WOOPS" textAlignment="CENTER" />
+   </children>
+</AnchorPane>
