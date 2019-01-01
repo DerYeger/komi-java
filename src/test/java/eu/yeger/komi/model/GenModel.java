@@ -5,18 +5,17 @@ import org.fulib.builder.ClassBuilder;
 import org.fulib.builder.ClassModelBuilder;
 import org.fulib.classmodel.ClassModel;
 
-import java.util.LinkedHashSet;
-
 public class GenModel {
 
     public static void main(String[] args) {
         //preparation
-        ClassModelBuilder mb = Fulib.classModelBuilder("eu.yeger.comaga.model", "src/main/java");
-        mb.setJavaFXPropertyStyle().setDefaultCollectionClass(LinkedHashSet.class);
+        ClassModelBuilder mb = Fulib.classModelBuilder("eu.yeger.komi.model", "src/main/java");
 
 
         //classes
         ClassBuilder game = mb.buildClass("Game");
+
+        ClassBuilder board = mb.buildClass("Board");
 
         ClassBuilder player = mb.buildClass("Player");
 
@@ -28,16 +27,21 @@ public class GenModel {
 
 
         //attributes
+        board.buildAttribute("size", ClassModelBuilder.INT);
+
         player.buildAttribute("color", ClassModelBuilder.STRING);
         player.buildAttribute("score", ClassModelBuilder.INT);
 
-        pawn.buildAttribute("xPos", ClassModelBuilder.INT);
-        pawn.buildAttribute("yPos", ClassModelBuilder.INT);
+        slot.buildAttribute("xPos", ClassModelBuilder.INT);
+        slot.buildAttribute("yPos", ClassModelBuilder.INT);
 
 
         //associations
-        game.buildAssociation(player, "players", 2, "game", ClassModelBuilder.ONE);
+        game.buildAssociation(board, "board", ClassModelBuilder.ONE, "game", ClassModelBuilder.ONE);
+        game.buildAssociation(player, "players", ClassModelBuilder.MANY, "game", ClassModelBuilder.ONE);
         game.buildAssociation(player, "currentPlayer", ClassModelBuilder.ONE, "currentGame", ClassModelBuilder.ONE);
+
+        board.buildAssociation(slot, "slots", ClassModelBuilder.MANY, "board", ClassModelBuilder.ONE);
 
         player.buildAssociation(pawn, "pawns", ClassModelBuilder.MANY, "player", ClassModelBuilder.ONE);
         player.buildAssociation(group, "groups", ClassModelBuilder.MANY, "player", ClassModelBuilder.ONE);
