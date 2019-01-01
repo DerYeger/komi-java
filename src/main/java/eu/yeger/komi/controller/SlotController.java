@@ -50,11 +50,9 @@ public class SlotController {
 
     private void addHandlers() {
         slotButton.setOnAction(event -> {
-            Player currentPlayer = Model.getInstance().getGame().getCurrentPlayer();
-            Pawn newPawn = new Pawn();
-            newPawn.setPlayer(currentPlayer);
-            slot.setPawn(newPawn);
-            //TODO Implement grouping
+            if (slot.getPawn() == null) {
+                new GameLogicController().turn(slot);
+            }
         });
     }
 

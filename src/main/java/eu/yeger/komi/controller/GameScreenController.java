@@ -25,27 +25,13 @@ public class GameScreenController {
 
         addListeners();
 
-        updateCurrentPlayerIndicator();
         updateBlackScoreLabel();
         updateWhiteScoreLabel();
     }
 
     private void addListeners() {
-        Model.getInstance().getGame().addPropertyChangeListener(Game.PROPERTY_currentPlayer, evt -> updateCurrentPlayerIndicator());
         blackPlayer.addPropertyChangeListener(Player.PROPERTY_score, evt -> updateBlackScoreLabel());
         whitePlayer.addPropertyChangeListener(Player.PROPERTY_score, evt -> updateWhiteScoreLabel());
-    }
-
-    private void updateCurrentPlayerIndicator() {
-        if (Model.getInstance().getGame().getCurrentPlayer().equals(blackPlayer)) {
-            //show black
-            blackScoreLabel.setStyle("-fx-font-size: 40");
-            whiteScoreLabel.setStyle("-fx-font-size: 30");
-        } else {
-            //show white
-            blackScoreLabel.setStyle("-fx-font-size: 30");
-            whiteScoreLabel.setStyle("-fx-font-size: 40");
-        }
     }
 
     private void updateBlackScoreLabel() {
