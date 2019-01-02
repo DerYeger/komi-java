@@ -3,8 +3,6 @@ package eu.yeger.komi.controller;
 import eu.yeger.komi.model.*;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 
 class GameLogicController {
 
@@ -35,68 +33,32 @@ class GameLogicController {
         }
     }
 
-    /*
     private void checkAndRemovePawns(final Player player) {
-        player.getPawns().stream().forEach(pawn -> checkPawn(pawn));
-        new ArrayList<>(player.getPawns()).stream().filter(pawn -> !pawn.getHasLiberties()).forEach(pawn -> pawn.removeYou());
-        //TODO implement scoring
-        player.getPawns().stream().forEach(pawn -> {
-            pawn.setHasBeenChecked(false);
-            pawn.setHasLiberties(false);
-        });
-    }
-    */
+        player.getPawns().stream().forEach(this::checkPawn);
 
-    private void checkAndRemovePawns(final Player player) {
-        for (Pawn pawn : player.getPawns()) {
-            checkPawn(pawn);
-        }
         new ArrayList<>(player.getPawns()).stream().filter(pawn -> !pawn.getHasLiberties()).forEach(Pawn::removeYou);
         player.getPawns().stream().forEach(pawn -> {
-            pawn.setHasBeenChecked(false);
+            //pawn.setHasBeenChecked(false);
             pawn.setHasLiberties(false);
         });
     }
 
+    //if any neighboring slot is empty (and thus a liberty)
+    //notify all neighboring and friendly pawns that they possess that liberty as well
     private void checkPawn(final Pawn pawn) {
-
-        if (pawn.getHasBeenChecked()) return;
-
-        pawn.setHasBeenChecked(true);
-
-        BoardController boardController = new BoardController();
-        Slot slot = pawn.getSlot();
-        int xPos = slot.getXPos();
-        int yPos = slot.getYPos();
-
-        Slot topSlot = boardController.getSlot(xPos, yPos - 1);
-        Slot rightSlot = boardController.getSlot(xPos + 1, yPos);
-        Slot bottomSlot = boardController.getSlot(xPos, yPos + 1);
-        Slot leftSlot = boardController.getSlot(xPos - 1, yPos);
-
-
-        //checks if pawn has empty neighboring slot (liberty)
-        if (topSlot != null && topSlot.getPawn() == null ||
-                rightSlot != null && rightSlot.getPawn() == null ||
-                bottomSlot != null && bottomSlot.getPawn() == null ||
-                leftSlot != null && leftSlot.getPawn() == null) {
-            pawn.setHasBeenChecked(true);
-            pawn.setHasLiberties(true);
-        }
-
-        Queue<Slot> slotQueue = new LinkedList<>();
-        slotQueue.add(topSlot);
-        slotQueue.add(rightSlot);
-        slotQueue.add(bottomSlot);
-        slotQueue.add(leftSlot);
-
-        //checks if any neighboring slots have a pawn owned by the same player and if they have liberties
-        while (!pawn.getHasLiberties() && !slotQueue.isEmpty()) {
-            Slot otherSlot = slotQueue.poll();
-            if (otherSlot != null && otherSlot.getPawn() != null && otherSlot.getPawn().getPlayer().equals(pawn.getPlayer())) {
-                if (!otherSlot.getPawn().getHasBeenChecked()) checkPawn(otherSlot.getPawn());
-                pawn.setHasLiberties(otherSlot.getPawn().getHasLiberties());
-            }
+        if (!pawn.getHasLiberties() && pawn.getSlot().getNeighbors().stream().anyMatch(otherSlot -> otherSlot.getPawn() == null)) {
+            grantAndPropagateLiberties(pawn);
         }
     }
+
+    private void grantAndPropagateLiberties(final Pawn pawn) {
+        pawn.setHasLiberties(true);
+
+        //recursively mark all connected pawns belonging to the same player that are not marked already
+        pawn.getSlot().getNeighbors().stream()
+                .filter(slot -> slot.getPawn() != null && slot.getPawn().getPlayer().equals(pawn.getPlayer()) && !slot.getPawn().getHasLiberties())
+                .forEach(slot -> grantAndPropagateLiberties(slot.getPawn()));
+    }
+
+
 }

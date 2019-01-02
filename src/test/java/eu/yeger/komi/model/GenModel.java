@@ -34,7 +34,6 @@ public class GenModel {
         slot.buildAttribute("yPos", ClassModelBuilder.INT);
 
         pawn.buildAttribute("hasLiberties", ClassModelBuilder.BOOLEAN);
-        pawn.buildAttribute("hasBeenChecked", ClassModelBuilder.BOOLEAN);
 
 
         //associations
@@ -46,6 +45,7 @@ public class GenModel {
 
         player.buildAssociation(pawn, "pawns", ClassModelBuilder.MANY, "player", ClassModelBuilder.ONE);
 
+        slot.buildAssociation(slot, "neighbors", ClassModelBuilder.MANY, "neighbors", ClassModelBuilder.MANY);
         slot.buildAssociation(pawn, "pawn", ClassModelBuilder.ONE, "slot", ClassModelBuilder.ONE);
 
 

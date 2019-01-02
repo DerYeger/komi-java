@@ -1,6 +1,5 @@
 package eu.yeger.komi.controller;
 
-import eu.yeger.komi.model.Board;
 import eu.yeger.komi.model.Game;
 import eu.yeger.komi.model.Model;
 import eu.yeger.komi.model.Player;
@@ -10,8 +9,7 @@ public class GameController {
     public void initGame() {
         Game game = Model.getInstance().getGame();
 
-        Board board = new BoardController().buildBoard();
-        game.setBoard(board);
+        new BoardController().initBoard();
 
         Player blackPlayer = new Player();
         Player whitePlayer = new Player();
