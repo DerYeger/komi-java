@@ -74,38 +74,6 @@ public class Pawn
    }
 
 
-   public static final String PROPERTY_group = "group";
-
-   private Group group = null;
-
-
-   public Group getGroup()
-   {
-      return this.group;
-   }
-
-
-   public Pawn setGroup(Group value)
-   {
-      if (this.group != value)
-      {
-         Group oldValue = this.group;
-         if (this.group != null)
-         {
-            this.group = null;
-            oldValue.withoutPawns(this);
-         }
-         this.group = value;
-         if (value != null)
-         {
-            value.withPawns(this);
-         }
-         firePropertyChange("group", oldValue, value);
-      }
-      return this;
-   }
-
-
    protected PropertyChangeSupport listeners = null;
 
    public boolean firePropertyChange(String propertyName, Object oldValue, Object newValue)
@@ -162,7 +130,6 @@ public class Pawn
    {
       this.setPlayer(null);
       this.setSlot(null);
-      this.setGroup(null);
 
    }
 
@@ -177,6 +144,54 @@ public class Pawn
 
 
 
+
+
+
+
+
+
+   public static final String PROPERTY_hasLiberties = "hasLiberties";
+
+   private boolean hasLiberties;
+
+   public boolean getHasLiberties()
+   {
+      return hasLiberties;
+   }
+
+   public Pawn setHasLiberties(boolean value)
+   {
+      if (value != this.hasLiberties)
+      {
+         boolean oldValue = this.hasLiberties;
+         this.hasLiberties = value;
+         firePropertyChange("hasLiberties", oldValue, value);
+      }
+      return this;
+   }
+
+
+
+
+   public static final String PROPERTY_hasBeenChecked = "hasBeenChecked";
+
+   private boolean hasBeenChecked;
+
+   public boolean getHasBeenChecked()
+   {
+      return hasBeenChecked;
+   }
+
+   public Pawn setHasBeenChecked(boolean value)
+   {
+      if (value != this.hasBeenChecked)
+      {
+         boolean oldValue = this.hasBeenChecked;
+         this.hasBeenChecked = value;
+         firePropertyChange("hasBeenChecked", oldValue, value);
+      }
+      return this;
+   }
 
 
 

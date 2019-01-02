@@ -41,29 +41,6 @@ public class Slot
    }
 
 
-   public static final String PROPERTY_groups = "groups";
-
-   private java.util.ArrayList<Group> groups = null;
-
-
-   public java.util.ArrayList<Group> getGroups()
-   {
-      if (this.groups == null)
-      {
-         return EMPTY_groups;
-      }
-
-      return this.groups;
-   }
-
-
-
-   public Slot withoutGroups(Group value)
-   {
-      this.getGroups().remove(value);
-      return this;
-   }
-
 
    protected PropertyChangeSupport listeners = null;
 
@@ -121,9 +98,6 @@ public class Slot
    {
       this.setBoard(null);
       this.setPawn(null);
-
-      this.withoutGroups(this.getGroups().clone());
-
 
    }
 
@@ -210,68 +184,20 @@ public class Slot
    }
 
 
-   public static final java.util.ArrayList<Group> EMPTY_groups = new java.util.ArrayList<Group>()
-   { @Override public boolean add(Group value){ throw new UnsupportedOperationException("No direct add! Use xy.withGroups(obj)"); }};
-
-
-   public Slot withGroups(Object... value)
-   {
-      if(value==null) return this;
-      for (Object item : value)
-      {
-         if (item == null) continue;
-         if (item instanceof java.util.Collection)
-         {
-            for (Object i : (java.util.Collection) item)
-            {
-               this.withGroups(i);
-            }
-         }
-         else if (item instanceof Group)
-         {
-            if (this.groups == null)
-            {
-               this.groups = new java.util.ArrayList<Group>();
-            }
-            if ( ! this.groups.contains(item))
-            {
-               this.groups.add((Group)item);
-               ((Group)item).withLiberties(this);
-               firePropertyChange("groups", null, item);
-            }
-         }
-         else throw new IllegalArgumentException();
-      }
-      return this;
-   }
 
 
 
-   public Slot withoutGroups(Object... value)
-   {
-      if (this.groups == null || value==null) return this;
-      for (Object item : value)
-      {
-         if (item == null) continue;
-         if (item instanceof java.util.Collection)
-         {
-            for (Object i : (java.util.Collection) item)
-            {
-               this.withoutGroups(i);
-            }
-         }
-         else if (item instanceof Group)
-         {
-            if (this.groups.contains(item))
-            {
-               this.groups.remove((Group)item);
-               ((Group)item).withoutLiberties(this);
-               firePropertyChange("groups", item, null);
-            }
-         }
-      }
-      return this;
-   }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

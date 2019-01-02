@@ -1,5 +1,5 @@
 - c1: 	ClassModel
-  classes: 	game2 	board3 	player4 	slot5 	pawn6 	group7 	
+  classes: 	game2 	board3 	player4 	slot5 	pawn6 	
   defaultPropertyStyle: 	POJO
   defaultRoleType: 	"java.util.ArrayList<%s>"
   mainJavaDir: 	"src/main/java"
@@ -11,258 +11,206 @@
   modified: 	false
   name: 	Game
   propertyStyle: 	POJO
-  roles: 	board8 	players9 	currentPlayer10 	
+  roles: 	board7 	players8 	currentPlayer9 	
 
 - board3: 	Clazz
-  attributes: 	size11 	
+  attributes: 	size10 	
   model: 	c1
   modified: 	false
   name: 	Board
   propertyStyle: 	POJO
-  roles: 	game12 	slots13 	
+  roles: 	game11 	slots12 	
 
 - player4: 	Clazz
-  attributes: 	color14 	score15 	
+  attributes: 	color13 	score14 	
   model: 	c1
   modified: 	false
   name: 	Player
   propertyStyle: 	POJO
-  roles: 	game16 	currentGame17 	pawns18 	groups19 	
+  roles: 	game15 	currentGame16 	pawns17 	
 
 - slot5: 	Clazz
-  attributes: 	xPos20 	yPos21 	
+  attributes: 	xPos18 	yPos19 	
   model: 	c1
   modified: 	false
   name: 	Slot
   propertyStyle: 	POJO
-  roles: 	board22 	pawn23 	groups24 	
+  roles: 	board20 	pawn21 	
 
 - pawn6: 	Clazz
+  attributes: 	hasLiberties22 	hasBeenChecked23 	
   model: 	c1
   modified: 	false
   name: 	Pawn
   propertyStyle: 	POJO
-  roles: 	player25 	slot26 	group27 	
+  roles: 	player24 	slot25 	
 
-- group7: 	Clazz
-  model: 	c1
-  modified: 	false
-  name: 	Group
-  propertyStyle: 	POJO
-  roles: 	player28 	pawns29 	liberties30 	
-
-- board8: 	AssocRole
+- board7: 	AssocRole
   aggregation: 	false
   cardinality: 	1
   clazz: 	game2
   modified: 	false
   name: 	board
-  other: 	game12
+  other: 	game11
   propertyStyle: 	POJO
   roleType: 	"java.util.ArrayList<%s>"
 
-- players9: 	AssocRole
+- players8: 	AssocRole
   aggregation: 	false
   cardinality: 	42
   clazz: 	game2
   modified: 	false
   name: 	players
-  other: 	game16
+  other: 	game15
   propertyStyle: 	POJO
   roleType: 	"java.util.ArrayList<%s>"
 
-- currentPlayer10: 	AssocRole
+- currentPlayer9: 	AssocRole
   aggregation: 	false
   cardinality: 	1
   clazz: 	game2
   modified: 	false
   name: 	currentPlayer
-  other: 	currentGame17
+  other: 	currentGame16
   propertyStyle: 	POJO
   roleType: 	"java.util.ArrayList<%s>"
 
-- size11: 	Attribute
+- size10: 	Attribute
   clazz: 	board3
   modified: 	false
   name: 	size
   propertyStyle: 	POJO
   type: 	int
 
-- game12: 	AssocRole
+- game11: 	AssocRole
   aggregation: 	false
   cardinality: 	1
   clazz: 	board3
   modified: 	false
   name: 	game
-  other: 	board8
+  other: 	board7
   propertyStyle: 	POJO
   roleType: 	"java.util.ArrayList<%s>"
 
-- slots13: 	AssocRole
+- slots12: 	AssocRole
   aggregation: 	false
   cardinality: 	42
   clazz: 	board3
   modified: 	false
   name: 	slots
-  other: 	board22
+  other: 	board20
   propertyStyle: 	POJO
   roleType: 	"java.util.ArrayList<%s>"
 
-- color14: 	Attribute
+- color13: 	Attribute
   clazz: 	player4
   modified: 	false
   name: 	color
   propertyStyle: 	POJO
   type: 	String
 
-- score15: 	Attribute
+- score14: 	Attribute
   clazz: 	player4
   modified: 	false
   name: 	score
   propertyStyle: 	POJO
   type: 	int
 
-- game16: 	AssocRole
+- game15: 	AssocRole
   aggregation: 	false
   cardinality: 	1
   clazz: 	player4
   modified: 	false
   name: 	game
-  other: 	players9
+  other: 	players8
   propertyStyle: 	POJO
   roleType: 	"java.util.ArrayList<%s>"
 
-- currentGame17: 	AssocRole
+- currentGame16: 	AssocRole
   aggregation: 	false
   cardinality: 	1
   clazz: 	player4
   modified: 	false
   name: 	currentGame
-  other: 	currentPlayer10
+  other: 	currentPlayer9
   propertyStyle: 	POJO
   roleType: 	"java.util.ArrayList<%s>"
 
-- pawns18: 	AssocRole
+- pawns17: 	AssocRole
   aggregation: 	false
   cardinality: 	42
   clazz: 	player4
   modified: 	false
   name: 	pawns
-  other: 	player25
+  other: 	player24
   propertyStyle: 	POJO
   roleType: 	"java.util.ArrayList<%s>"
 
-- groups19: 	AssocRole
-  aggregation: 	false
-  cardinality: 	42
-  clazz: 	player4
-  modified: 	false
-  name: 	groups
-  other: 	player28
-  propertyStyle: 	POJO
-  roleType: 	"java.util.ArrayList<%s>"
-
-- xPos20: 	Attribute
+- xPos18: 	Attribute
   clazz: 	slot5
   modified: 	false
   name: 	xPos
   propertyStyle: 	POJO
   type: 	int
 
-- yPos21: 	Attribute
+- yPos19: 	Attribute
   clazz: 	slot5
   modified: 	false
   name: 	yPos
   propertyStyle: 	POJO
   type: 	int
 
-- board22: 	AssocRole
+- board20: 	AssocRole
   aggregation: 	false
   cardinality: 	1
   clazz: 	slot5
   modified: 	false
   name: 	board
-  other: 	slots13
+  other: 	slots12
   propertyStyle: 	POJO
   roleType: 	"java.util.ArrayList<%s>"
 
-- pawn23: 	AssocRole
+- pawn21: 	AssocRole
   aggregation: 	false
   cardinality: 	1
   clazz: 	slot5
   modified: 	false
   name: 	pawn
-  other: 	slot26
+  other: 	slot25
   propertyStyle: 	POJO
   roleType: 	"java.util.ArrayList<%s>"
 
-- groups24: 	AssocRole
-  aggregation: 	false
-  cardinality: 	42
-  clazz: 	slot5
+- hasLiberties22: 	Attribute
+  clazz: 	pawn6
   modified: 	false
-  name: 	groups
-  other: 	liberties30
+  name: 	hasLiberties
   propertyStyle: 	POJO
-  roleType: 	"java.util.ArrayList<%s>"
+  type: 	boolean
 
-- player25: 	AssocRole
+- hasBeenChecked23: 	Attribute
+  clazz: 	pawn6
+  modified: 	false
+  name: 	hasBeenChecked
+  propertyStyle: 	POJO
+  type: 	boolean
+
+- player24: 	AssocRole
   aggregation: 	false
   cardinality: 	1
   clazz: 	pawn6
   modified: 	false
   name: 	player
-  other: 	pawns18
+  other: 	pawns17
   propertyStyle: 	POJO
   roleType: 	"java.util.ArrayList<%s>"
 
-- slot26: 	AssocRole
+- slot25: 	AssocRole
   aggregation: 	false
   cardinality: 	1
   clazz: 	pawn6
   modified: 	false
   name: 	slot
-  other: 	pawn23
-  propertyStyle: 	POJO
-  roleType: 	"java.util.ArrayList<%s>"
-
-- group27: 	AssocRole
-  aggregation: 	false
-  cardinality: 	1
-  clazz: 	pawn6
-  modified: 	false
-  name: 	group
-  other: 	pawns29
-  propertyStyle: 	POJO
-  roleType: 	"java.util.ArrayList<%s>"
-
-- player28: 	AssocRole
-  aggregation: 	false
-  cardinality: 	1
-  clazz: 	group7
-  modified: 	false
-  name: 	player
-  other: 	groups19
-  propertyStyle: 	POJO
-  roleType: 	"java.util.ArrayList<%s>"
-
-- pawns29: 	AssocRole
-  aggregation: 	false
-  cardinality: 	42
-  clazz: 	group7
-  modified: 	false
-  name: 	pawns
-  other: 	group27
-  propertyStyle: 	POJO
-  roleType: 	"java.util.ArrayList<%s>"
-
-- liberties30: 	AssocRole
-  aggregation: 	false
-  cardinality: 	42
-  clazz: 	group7
-  modified: 	false
-  name: 	liberties
-  other: 	groups24
+  other: 	pawn21
   propertyStyle: 	POJO
   roleType: 	"java.util.ArrayList<%s>"
 
