@@ -35,15 +35,15 @@
   modified: 	false
   name: 	Slot
   propertyStyle: 	POJO
-  roles: 	board20 	pawn21 	
+  roles: 	board20 	neighbors21 	neighbors22 	pawn23 	
 
 - pawn6: 	Clazz
-  attributes: 	hasLiberties22 	hasBeenChecked23 	
+  attributes: 	hasLiberties24 	
   model: 	c1
   modified: 	false
   name: 	Pawn
   propertyStyle: 	POJO
-  roles: 	player24 	slot25 	
+  roles: 	player25 	slot26 	
 
 - board7: 	AssocRole
   aggregation: 	false
@@ -142,7 +142,7 @@
   clazz: 	player4
   modified: 	false
   name: 	pawns
-  other: 	player24
+  other: 	player25
   propertyStyle: 	POJO
   roleType: 	"java.util.ArrayList<%s>"
 
@@ -170,31 +170,44 @@
   propertyStyle: 	POJO
   roleType: 	"java.util.ArrayList<%s>"
 
-- pawn21: 	AssocRole
+- neighbors21: 	AssocRole
+  aggregation: 	false
+  cardinality: 	42
+  clazz: 	slot5
+  modified: 	false
+  name: 	neighbors
+  other: 	neighbors22
+  propertyStyle: 	POJO
+  roleType: 	"java.util.ArrayList<%s>"
+
+- neighbors22: 	AssocRole
+  aggregation: 	false
+  cardinality: 	42
+  clazz: 	slot5
+  modified: 	false
+  name: 	neighbors
+  other: 	neighbors21
+  propertyStyle: 	POJO
+  roleType: 	"java.util.ArrayList<%s>"
+
+- pawn23: 	AssocRole
   aggregation: 	false
   cardinality: 	1
   clazz: 	slot5
   modified: 	false
   name: 	pawn
-  other: 	slot25
+  other: 	slot26
   propertyStyle: 	POJO
   roleType: 	"java.util.ArrayList<%s>"
 
-- hasLiberties22: 	Attribute
+- hasLiberties24: 	Attribute
   clazz: 	pawn6
   modified: 	false
   name: 	hasLiberties
   propertyStyle: 	POJO
   type: 	boolean
 
-- hasBeenChecked23: 	Attribute
-  clazz: 	pawn6
-  modified: 	false
-  name: 	hasBeenChecked
-  propertyStyle: 	POJO
-  type: 	boolean
-
-- player24: 	AssocRole
+- player25: 	AssocRole
   aggregation: 	false
   cardinality: 	1
   clazz: 	pawn6
@@ -204,13 +217,13 @@
   propertyStyle: 	POJO
   roleType: 	"java.util.ArrayList<%s>"
 
-- slot25: 	AssocRole
+- slot26: 	AssocRole
   aggregation: 	false
   cardinality: 	1
   clazz: 	pawn6
   modified: 	false
   name: 	slot
-  other: 	pawn21
+  other: 	pawn23
   propertyStyle: 	POJO
   roleType: 	"java.util.ArrayList<%s>"
 

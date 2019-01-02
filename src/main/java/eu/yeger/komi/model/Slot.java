@@ -99,6 +99,12 @@ public class Slot
       this.setBoard(null);
       this.setPawn(null);
 
+      this.withoutNeighbors(this.getNeighbors().clone());
+
+
+      this.withoutNeighbors(this.getNeighbors().clone());
+
+
    }
 
 
@@ -198,6 +204,87 @@ public class Slot
 
 
 
+
+
+
+
+
+
+public static final java.util.ArrayList<Slot> EMPTY_neighbors = new java.util.ArrayList<Slot>()
+   { @Override public boolean add(Slot value){ throw new UnsupportedOperationException("No direct add! Use xy.withNeighbors(obj)"); }};
+
+
+public static final String PROPERTY_neighbors = "neighbors";
+
+private java.util.ArrayList<Slot> neighbors = null;
+
+public java.util.ArrayList<Slot> getNeighbors()
+   {
+      if (this.neighbors == null)
+      {
+         return EMPTY_neighbors;
+      }
+
+      return this.neighbors;
+   }
+
+public Slot withNeighbors(Object... value)
+   {
+      if(value==null) return this;
+      for (Object item : value)
+      {
+         if (item == null) continue;
+         if (item instanceof java.util.Collection)
+         {
+            for (Object i : (java.util.Collection) item)
+            {
+               this.withNeighbors(i);
+            }
+         }
+         else if (item instanceof Slot)
+         {
+            if (this.neighbors == null)
+            {
+               this.neighbors = new java.util.ArrayList<Slot>();
+            }
+            if ( ! this.neighbors.contains(item))
+            {
+               this.neighbors.add((Slot)item);
+               ((Slot)item).withNeighbors(this);
+               firePropertyChange("neighbors", null, item);
+            }
+         }
+         else throw new IllegalArgumentException();
+      }
+      return this;
+   }
+
+
+public Slot withoutNeighbors(Object... value)
+   {
+      if (this.neighbors == null || value==null) return this;
+      for (Object item : value)
+      {
+         if (item == null) continue;
+         if (item instanceof java.util.Collection)
+         {
+            for (Object i : (java.util.Collection) item)
+            {
+               this.withoutNeighbors(i);
+            }
+         }
+         else if (item instanceof Slot)
+         {
+            if (this.neighbors.contains(item))
+            {
+               this.neighbors.remove((Slot)item);
+               ((Slot)item).withoutNeighbors(this);
+               firePropertyChange("neighbors", item, null);
+            }
+         }
+      }
+      return this;
+   }
 
 
 

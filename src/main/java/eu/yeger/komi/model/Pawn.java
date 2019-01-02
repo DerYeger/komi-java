@@ -173,27 +173,6 @@ public class Pawn
 
 
 
-   public static final String PROPERTY_hasBeenChecked = "hasBeenChecked";
-
-   private boolean hasBeenChecked;
-
-   public boolean getHasBeenChecked()
-   {
-      return hasBeenChecked;
-   }
-
-   public Pawn setHasBeenChecked(boolean value)
-   {
-      if (value != this.hasBeenChecked)
-      {
-         boolean oldValue = this.hasBeenChecked;
-         this.hasBeenChecked = value;
-         firePropertyChange("hasBeenChecked", oldValue, value);
-      }
-      return this;
-   }
-
-
 
 
 }

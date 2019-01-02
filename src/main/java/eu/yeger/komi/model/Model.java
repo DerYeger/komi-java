@@ -10,6 +10,10 @@ public final class Model {
         game = new Game();
     }
 
+    public static void resetModel() {
+        instance = new Model();
+    }
+
     public static Model getInstance() {
         if (instance == null) instance = new Model();
         return instance;
@@ -18,4 +22,5 @@ public final class Model {
     public Game getGame() {
         return game;
     }
+
 }
