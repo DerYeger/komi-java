@@ -7,7 +7,6 @@ import eu.yeger.komi.model.Slot;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -32,6 +31,9 @@ public class SlotController {
     @FXML
     Circle pawnCircle;
 
+    @FXML
+    Circle selectionCircle;
+
     private Slot slot;
 
     public void initialize(final Slot slot) {
@@ -54,6 +56,8 @@ public class SlotController {
                 new GameLogicController().turn(slot);
             }
         });
+        slotButton.setOnMouseEntered(event -> updateSelectionCircle(true));
+        slotButton.setOnMouseExited(event -> updateSelectionCircle(false));
     }
 
     private void addListeners() {
@@ -73,6 +77,20 @@ public class SlotController {
             }
         } else {
             pawnCircle.setVisible(false);
+        }
+    }
+
+    private void updateSelectionCircle(final boolean visible) {
+        selectionCircle.setVisible(visible && slot.getPawn() == null);
+
+        if (visible && slot.getPawn() == null) {
+            selectionCircle.setVisible(true);
+            Player currentPlayer = Model.getInstance().getGame().getCurrentPlayer();
+            if (Model.getInstance().getGame().getPlayers().get(0).equals(currentPlayer)) {
+                selectionCircle.setFill(Color.BLACK);
+            } else {
+                selectionCircle.setFill(Color.WHITE);
+            }
         }
     }
 }

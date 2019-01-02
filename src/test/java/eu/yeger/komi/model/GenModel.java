@@ -23,8 +23,6 @@ public class GenModel {
 
         ClassBuilder pawn = mb.buildClass("Pawn");
 
-        ClassBuilder group = mb.buildClass("Group");
-
 
         //attributes
         board.buildAttribute("size", ClassModelBuilder.INT);
@@ -35,6 +33,9 @@ public class GenModel {
         slot.buildAttribute("xPos", ClassModelBuilder.INT);
         slot.buildAttribute("yPos", ClassModelBuilder.INT);
 
+        pawn.buildAttribute("hasLiberties", ClassModelBuilder.BOOLEAN);
+        pawn.buildAttribute("hasBeenChecked", ClassModelBuilder.BOOLEAN);
+
 
         //associations
         game.buildAssociation(board, "board", ClassModelBuilder.ONE, "game", ClassModelBuilder.ONE);
@@ -44,13 +45,9 @@ public class GenModel {
         board.buildAssociation(slot, "slots", ClassModelBuilder.MANY, "board", ClassModelBuilder.ONE);
 
         player.buildAssociation(pawn, "pawns", ClassModelBuilder.MANY, "player", ClassModelBuilder.ONE);
-        player.buildAssociation(group, "groups", ClassModelBuilder.MANY, "player", ClassModelBuilder.ONE);
 
         slot.buildAssociation(pawn, "pawn", ClassModelBuilder.ONE, "slot", ClassModelBuilder.ONE);
 
-        pawn.buildAssociation(group, "group", ClassModelBuilder.ONE, "pawns", ClassModelBuilder.MANY);
-
-        group.buildAssociation(slot, "liberties", ClassModelBuilder.MANY, "groups", ClassModelBuilder.MANY);
 
         //generator
         ClassModel model = mb.getClassModel();
