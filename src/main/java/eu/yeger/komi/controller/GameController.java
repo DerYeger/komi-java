@@ -23,15 +23,16 @@ public class GameController {
 
     void nextRound() {
         new AudioClip(getClass().getResource("/sounds/round_over.wav").toExternalForm()).play();
+
         Game game = Model.getInstance().getGame();
+        game.setRound(game.getRound() + 1);
         game.getCurrentPlayer().setRoundsWon(game.getCurrentPlayer().getRoundsWon() + 1);
+        game.setCurrentPlayer(Model.getInstance().getGame().getPlayers().get(0));
 
         //removes leftover pawns
         game.getPlayers().stream().forEach(player -> {
             player.setScore(0);
             new ArrayList<>(player.getPawns()).stream().forEach(Pawn::removeYou);
         });
-        game.setRound(game.getRound() + 1);
-        game.setCurrentPlayer(Model.getInstance().getGame().getPlayers().get(0));
     }
 }

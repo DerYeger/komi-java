@@ -42,14 +42,14 @@ public class ViewBuilder {
 
         }
         gridPane.setAlignment(Pos.CENTER);
-        gridPane.setBackground(new Background(new BackgroundImage(new Image(ViewBuilder.class.getResource("wood.bmp").toExternalForm(), 512, 512, true, false),
+        gridPane.setBackground(new Background(new BackgroundImage(new Image(ViewBuilder.class.getResource("wood.bmp").toExternalForm(),
+                512, 512, true, true),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
-        //ViewBuilder.class.getResource("wood.bmp").toExternalForm()
         return gridPane;
     }
 
     private static AnchorPane buildSlotAnchorPane(final Slot slot) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ViewBuilder.class.getResource("slot.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ViewBuilder.class.getResource("slotLarge.fxml"));
         AnchorPane slotAnchorPane = fxmlLoader.load();
         SlotController slotController = fxmlLoader.getController();
         slotController.initialize(slot);
@@ -57,7 +57,7 @@ public class ViewBuilder {
     }
 
     private static VBox buildScoreIndicatorVBox(final Player player) {
-        VBox vBox = new VBox(4);
+        VBox vBox = new VBox(10);
         for (int i = 0; i < ControllerUtilities.WINNING_SCORE; i++) {
             vBox.getChildren().add(buildScoreIndicatorCircle(player));
         }
@@ -69,7 +69,7 @@ public class ViewBuilder {
 
     private static Circle buildScoreIndicatorCircle(final Player player) {
         Circle circle =  new Circle();
-        circle.setRadius(23);
+        circle.setRadius(30);
         circle.setFill(Model.getInstance().getGame().getPlayers().get(0).equals(player) ? Color.WHITE : Color.BLACK);
         circle.setVisible(false);
         return circle;

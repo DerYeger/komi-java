@@ -1,9 +1,6 @@
 package eu.yeger.komi.controller;
 
-import eu.yeger.komi.model.Model;
-import eu.yeger.komi.model.Pawn;
-import eu.yeger.komi.model.Player;
-import eu.yeger.komi.model.Slot;
+import eu.yeger.komi.model.*;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
