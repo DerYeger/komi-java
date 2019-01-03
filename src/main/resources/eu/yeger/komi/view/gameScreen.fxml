@@ -4,13 +4,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: grey;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.yeger.komi.controller.GameScreenController">
+<VBox fx:id="gameScreenVBox" alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: grey;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.yeger.komi.controller.GameScreenController">
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
-            <Label fx:id="blackScoreLabel" alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="100.0" text="BlackScore" wrapText="true" />
+            <Label fx:id="blackRoundsWonLabel" alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="100.0" text="BlackScore" wrapText="true" />
             <Label alignment="CENTER" text="-" textAlignment="CENTER" />
-            <Label fx:id="whiteScoreLabel" prefHeight="50.0" prefWidth="100.0" text="WhiteScore" />
+            <Label fx:id="whiteRoundsWonLabel" prefHeight="50.0" prefWidth="100.0" text="WhiteScore" />
          </children>
       </HBox>
    </children>

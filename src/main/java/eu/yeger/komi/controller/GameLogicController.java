@@ -13,8 +13,26 @@ class GameLogicController {
         slot.setPawn(newPawn);
 
         checkAndRemovePawns(getWaitingPlayer());
+        if(checkIfRoundIsOver()) return;
+
         swapCurrentPlayer();
+
+        //checks for suicide moves
         checkAndRemovePawns(getWaitingPlayer());
+        checkIfRoundIsOver();
+    }
+
+    private boolean checkIfRoundIsOver() {
+        Game game = Model.getInstance().getGame();
+        if (game.getCurrentPlayer().getScore() >= ControllerUtilities.WINNING_SCORE) {
+            new GameController().nextRound();
+            return true;
+        } else if (getWaitingPlayer().getScore() >= ControllerUtilities.WINNING_SCORE) {
+            swapCurrentPlayer();
+            new GameController().nextRound();
+            return true;
+        }
+        return false;
     }
 
     private void swapCurrentPlayer() {
@@ -36,11 +54,14 @@ class GameLogicController {
     private void checkAndRemovePawns(final Player player) {
         player.getPawns().stream().forEach(this::checkPawn);
 
+        int scoreGain = (int) player.getPawns().stream().filter(pawn -> !pawn.getHasLiberties()).count();
+
+        Player currentPlayer = Model.getInstance().getGame().getCurrentPlayer();
+        currentPlayer.setScore(currentPlayer.getScore() + scoreGain);
+
         new ArrayList<>(player.getPawns()).stream().filter(pawn -> !pawn.getHasLiberties()).forEach(Pawn::removeYou);
-        player.getPawns().stream().forEach(pawn -> {
-            //pawn.setHasBeenChecked(false);
-            pawn.setHasLiberties(false);
-        });
+
+        player.getPawns().stream().forEach(pawn -> pawn.setHasLiberties(false));
     }
 
     //if any neighboring slot is empty (and thus a liberty)
@@ -59,6 +80,4 @@ class GameLogicController {
                 .filter(slot -> slot.getPawn() != null && slot.getPawn().getPlayer().equals(pawn.getPlayer()) && !slot.getPawn().getHasLiberties())
                 .forEach(slot -> grantAndPropagateLiberties(slot.getPawn()));
     }
-
-
 }

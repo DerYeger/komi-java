@@ -3,16 +3,23 @@ package eu.yeger.komi.controller;
 import eu.yeger.komi.model.Game;
 import eu.yeger.komi.model.Model;
 import eu.yeger.komi.model.Player;
+import eu.yeger.komi.view.ViewBuilder;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+
+import java.io.IOException;
 
 public class GameScreenController {
 
     @FXML
-    Label blackScoreLabel;
+    VBox gameScreenVBox;
 
     @FXML
-    Label whiteScoreLabel;
+    Label blackRoundsWonLabel;
+
+    @FXML
+    Label whiteRoundsWonLabel;
 
     private Player blackPlayer;
 
@@ -30,15 +37,25 @@ public class GameScreenController {
     }
 
     private void addListeners() {
+        Model.getInstance().getGame().addPropertyChangeListener(Game.PROPERTY_round, evt -> redrawBoard());
         blackPlayer.addPropertyChangeListener(Player.PROPERTY_score, evt -> updateBlackScoreLabel());
         whitePlayer.addPropertyChangeListener(Player.PROPERTY_score, evt -> updateWhiteScoreLabel());
     }
 
+    private void redrawBoard() {
+        try {
+            gameScreenVBox.getChildren().remove(1);
+            gameScreenVBox.getChildren().add(ViewBuilder.buildGameScreenBoard());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void updateBlackScoreLabel() {
-        blackScoreLabel.setText(Integer.toString(blackPlayer.getScore()));
+        blackRoundsWonLabel.setText(Integer.toString(blackPlayer.getRoundsWon()));
     }
 
     private void updateWhiteScoreLabel() {
-        whiteScoreLabel.setText(Integer.toString(whitePlayer.getScore()));
+        whiteRoundsWonLabel.setText(Integer.toString(whitePlayer.getRoundsWon()));
     }
 }
