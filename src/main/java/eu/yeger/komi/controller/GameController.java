@@ -4,6 +4,7 @@ import eu.yeger.komi.model.Game;
 import eu.yeger.komi.model.Model;
 import eu.yeger.komi.model.Pawn;
 import eu.yeger.komi.model.Player;
+
 import javafx.scene.media.AudioClip;
 
 import java.util.ArrayList;

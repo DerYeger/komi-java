@@ -7,10 +7,10 @@
 
 <AnchorPane fx:id="anchorPane" prefHeight="70.0" prefWidth="70.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.yeger.komi.controller.SlotController">
    <children>
-      <Line fx:id="topLine" endX="35.0" endY="35.0" startX="35.0" strokeWidth="2.0" visible="false" />
-      <Line fx:id="rightLine" endX="70.0" endY="35.0" startX="35.0" startY="35.0" strokeWidth="2.0" visible="false" />
-      <Line fx:id="bottomLine" endX="35.0" endY="70.0" startX="35.0" startY="35.0" strokeWidth="2.0" visible="false" />
-      <Line fx:id="leftLine" endX="35.0" endY="35.0" startY="35.0" strokeWidth="2.0" visible="false" />
+      <Line fx:id="topLine" endX="35.0" endY="35.0" startX="35.0" strokeWidth="5.0" visible="false" />
+      <Line fx:id="rightLine" endX="70.0" endY="35.0" startX="35.0" startY="35.0" strokeWidth="5.0" visible="false" />
+      <Line fx:id="bottomLine" endX="35.0" endY="70.0" startX="35.0" startY="35.0" strokeWidth="5.0" visible="false" />
+      <Line fx:id="leftLine" endX="35.0" endY="35.0" startY="35.0" strokeWidth="5.0" visible="false" />
       <Circle fx:id="pawnCircle" centerX="35.0" centerY="35.0" fill="RED" radius="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" />
       <Circle fx:id="selectionCircle" centerX="35.0" centerY="35.0" fill="#23ff00" opacity="0.5" radius="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" />
       <Button fx:id="slotButton" focusTraversable="false" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" opacity="0.0" prefHeight="50.0" prefWidth="50.0" text="BUTTON" textAlignment="CENTER" />

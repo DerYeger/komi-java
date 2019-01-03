@@ -10,7 +10,6 @@ import javafx.geometry.NodeOrientation;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 import java.io.IOException;
@@ -30,7 +29,7 @@ public class ViewBuilder {
                 buildBoardGridPane(game.getBoard()),
                 buildScoreIndicatorVBox(game.getPlayers().get(1)));
         hBox.setAlignment(Pos.CENTER);
-        hBox.setSpacing(50);
+        hBox.setSpacing(20);
         return hBox;
     }
 
@@ -42,9 +41,9 @@ public class ViewBuilder {
 
         }
         gridPane.setAlignment(Pos.CENTER);
-        gridPane.setBackground(new Background(new BackgroundImage(new Image(ViewBuilder.class.getResource("wood.bmp").toExternalForm(),
-                512, 512, true, true),
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
+//        gridPane.setBackground(new Background(new BackgroundImage(new Image(ViewBuilder.class.getResource("wood.bmp").toExternalForm(),
+//                512, 512, true, true),
+//                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         return gridPane;
     }
 
@@ -57,7 +56,7 @@ public class ViewBuilder {
     }
 
     private static VBox buildScoreIndicatorVBox(final Player player) {
-        VBox vBox = new VBox(10);
+        VBox vBox = new VBox(12);
         for (int i = 0; i < ControllerUtilities.WINNING_SCORE; i++) {
             vBox.getChildren().add(buildScoreIndicatorCircle(player));
         }
@@ -70,8 +69,8 @@ public class ViewBuilder {
     private static Circle buildScoreIndicatorCircle(final Player player) {
         Circle circle =  new Circle();
         circle.setRadius(30);
-        circle.setFill(Model.getInstance().getGame().getPlayers().get(0).equals(player) ? Color.WHITE : Color.BLACK);
-        circle.setVisible(false);
+        //circle.setFill(Model.getInstance().getGame().getPlayers().get(0).equals(player) ? Color.WHITE : Color.BLACK);
+        //circle.setVisible(false);
         return circle;
     }
 }
