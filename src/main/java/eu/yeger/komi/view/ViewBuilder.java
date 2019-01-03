@@ -8,10 +8,8 @@ import eu.yeger.komi.model.*;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.NodeOrientation;
 import javafx.geometry.Pos;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
@@ -26,7 +24,7 @@ public class ViewBuilder {
         return gameScreen;
     }
 
-    public static HBox buildGameScreenBoard() throws IOException {
+    private static HBox buildGameScreenBoard() throws IOException {
         Game game = Model.getInstance().getGame();
         HBox hBox = new HBox(buildScoreIndicatorVBox(game.getPlayers().get(0)),
                 buildBoardGridPane(game.getBoard()),
@@ -44,6 +42,9 @@ public class ViewBuilder {
 
         }
         gridPane.setAlignment(Pos.CENTER);
+        gridPane.setBackground(new Background(new BackgroundImage(new Image(ViewBuilder.class.getResource("wood.bmp").toExternalForm(), 512, 512, true, false),
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
+        //ViewBuilder.class.getResource("wood.bmp").toExternalForm()
         return gridPane;
     }
 

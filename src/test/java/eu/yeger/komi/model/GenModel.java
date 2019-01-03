@@ -28,7 +28,7 @@ public class GenModel {
         game.buildAttribute("round", ClassModelBuilder.INT);
 
         board.buildAttribute("size", ClassModelBuilder.INT);
-        
+
         player.buildAttribute("score", ClassModelBuilder.INT);
         player.buildAttribute("roundsWon", ClassModelBuilder.INT);
 

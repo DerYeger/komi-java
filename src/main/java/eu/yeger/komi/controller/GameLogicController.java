@@ -2,6 +2,8 @@ package eu.yeger.komi.controller;
 
 import eu.yeger.komi.model.*;
 
+import javafx.scene.media.AudioClip;
+
 import java.util.ArrayList;
 
 class GameLogicController {
@@ -11,6 +13,8 @@ class GameLogicController {
         Pawn newPawn = new Pawn();
         newPawn.setPlayer(currentPlayer);
         slot.setPawn(newPawn);
+
+        new AudioClip(getClass().getResource("/sounds/pawn_placed.wav").toExternalForm()).play();
 
         checkAndRemovePawns(getWaitingPlayer());
         if(checkIfRoundIsOver()) return;

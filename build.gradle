@@ -20,7 +20,7 @@ dependencies {
 }
 
 javafx {
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.media']
 }
 
 group 'eu.yeger'
