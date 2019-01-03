@@ -6,17 +6,14 @@ import java.beans.PropertyChangeListener;
 
 public class Game  
 {
-
    public static final String PROPERTY_board = "board";
 
    private Board board = null;
-
 
    public Board getBoard()
    {
       return this.board;
    }
-
 
    public Game setBoard(Board value)
    {
@@ -38,17 +35,14 @@ public class Game
       return this;
    }
 
-
    public static final String PROPERTY_currentPlayer = "currentPlayer";
 
    private Player currentPlayer = null;
-
 
    public Player getCurrentPlayer()
    {
       return this.currentPlayer;
    }
-
 
    public Game setCurrentPlayer(Player value)
    {
@@ -69,7 +63,6 @@ public class Game
       }
       return this;
    }
-
 
    protected PropertyChangeSupport listeners = null;
 
@@ -121,33 +114,17 @@ public class Game
       return true;
    }
 
-
-
    public void removeYou()
    {
       this.setBoard(null);
       this.setCurrentPlayer(null);
 
       this.withoutPlayers(this.getPlayers().clone());
-
-
    }
-
-
-
-
-
-
-
-
-
-
-
 
    public static final String PROPERTY_players = "players";
 
    private java.util.ArrayList<Player> players = null;
-
 
    public java.util.ArrayList<Player> getPlayers()
    {
@@ -159,22 +136,14 @@ public class Game
       return this.players;
    }
 
-
-
    public Game withoutPlayers(Player value)
    {
       this.getPlayers().remove(value);
       return this;
    }
 
-
-
-
-
-
    public static final java.util.ArrayList<Player> EMPTY_players = new java.util.ArrayList<Player>()
    { @Override public boolean add(Player value){ throw new UnsupportedOperationException("No direct add! Use xy.withPlayers(obj)"); }};
-
 
    public Game withPlayers(Object... value)
    {
@@ -207,8 +176,6 @@ public class Game
       return this;
    }
 
-
-
    public Game withoutPlayers(Object... value)
    {
       if (this.players == null || value==null) return this;
@@ -235,27 +202,23 @@ public class Game
       return this;
    }
 
+   public static final String PROPERTY_round = "round";
 
+   private int round;
 
+   public int getRound()
+   {
+      return round;
+   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   public Game setRound(int value)
+   {
+      if (value != this.round)
+      {
+         int oldValue = this.round;
+         this.round = value;
+         firePropertyChange("round", oldValue, value);
+      }
+      return this;
+   }
 }

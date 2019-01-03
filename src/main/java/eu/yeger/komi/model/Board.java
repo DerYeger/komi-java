@@ -1,25 +1,19 @@
 package eu.yeger.komi.model;
 
-import javafx.beans.property.*;
-
 import java.beans.PropertyChangeSupport;
 
 import java.beans.PropertyChangeListener;
 
 public class Board  
 {
-
-
    public static final String PROPERTY_game = "game";
 
    private Game game = null;
-
 
    public Game getGame()
    {
       return this.game;
    }
-
 
    public Board setGame(Game value)
    {
@@ -40,7 +34,6 @@ public class Board
       }
       return this;
    }
-
 
    protected PropertyChangeSupport listeners = null;
 
@@ -92,8 +85,6 @@ public class Board
       return true;
    }
 
-
-
    public void removeYou()
    {
       this.setGame(null);
@@ -102,9 +93,6 @@ public class Board
 
 
    }
-
-
-
 
    public static final String PROPERTY_slots = "slots";
 
@@ -121,24 +109,11 @@ public class Board
       return this.slots;
    }
 
-
-
    public Board withoutSlots(Slot value)
    {
       this.getSlots().remove(value);
       return this;
    }
-
-
-
-
-
-
-
-
-
-
-
 
    public static final String PROPERTY_size = "size";
 
@@ -159,7 +134,6 @@ public class Board
       }
       return this;
    }
-
 
    public static final java.util.ArrayList<Slot> EMPTY_slots = new java.util.ArrayList<Slot>()
    { @Override public boolean add(Slot value){ throw new UnsupportedOperationException("No direct add! Use xy.withSlots(obj)"); }};
@@ -196,55 +170,22 @@ public class Board
       return this;
    }
 
-
-
-   public Board withoutSlots(Object... value)
-   {
-      if (this.slots == null || value==null) return this;
-      for (Object item : value)
-      {
+   public Board withoutSlots(Object... value) {
+      if (this.slots == null || value == null) return this;
+      for (Object item : value) {
          if (item == null) continue;
-         if (item instanceof java.util.Collection)
-         {
-            for (Object i : (java.util.Collection) item)
-            {
+         if (item instanceof java.util.Collection) {
+            for (Object i : (java.util.Collection) item) {
                this.withoutSlots(i);
             }
-         }
-         else if (item instanceof Slot)
-         {
-            if (this.slots.contains(item))
-            {
-               this.slots.remove((Slot)item);
-               ((Slot)item).setBoard(null);
+         } else if (item instanceof Slot) {
+            if (this.slots.contains(item)) {
+               this.slots.remove((Slot) item);
+               ((Slot) item).setBoard(null);
                firePropertyChange("slots", item, null);
             }
          }
       }
       return this;
    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

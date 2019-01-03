@@ -25,10 +25,12 @@ public class GenModel {
 
 
         //attributes
-        board.buildAttribute("size", ClassModelBuilder.INT);
+        game.buildAttribute("round", ClassModelBuilder.INT);
 
-        player.buildAttribute("color", ClassModelBuilder.STRING);
+        board.buildAttribute("size", ClassModelBuilder.INT);
+        
         player.buildAttribute("score", ClassModelBuilder.INT);
+        player.buildAttribute("roundsWon", ClassModelBuilder.INT);
 
         slot.buildAttribute("xPos", ClassModelBuilder.INT);
         slot.buildAttribute("yPos", ClassModelBuilder.INT);

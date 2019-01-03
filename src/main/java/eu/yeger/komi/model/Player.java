@@ -1,25 +1,19 @@
 package eu.yeger.komi.model;
 
-import javafx.beans.property.*;
-
 import java.beans.PropertyChangeSupport;
 
 import java.beans.PropertyChangeListener;
 
 public class Player  
 {
-
-
    public static final String PROPERTY_currentGame = "currentGame";
 
    private Game currentGame = null;
-
 
    public Game getCurrentGame()
    {
       return this.currentGame;
    }
-
 
    public Player setCurrentGame(Game value)
    {
@@ -41,7 +35,6 @@ public class Player
       return this;
    }
 
-
    public static final String PROPERTY_pawns = "pawns";
 
    private java.util.ArrayList<Pawn> pawns = null;
@@ -57,15 +50,11 @@ public class Player
       return this.pawns;
    }
 
-
-
    public Player withoutPawns(Pawn value)
    {
       this.getPawns().remove(value);
       return this;
    }
-
-
 
    protected PropertyChangeSupport listeners = null;
 
@@ -123,15 +112,11 @@ public class Player
       this.setCurrentGame(null);
 
       this.withoutPawns(this.getPawns().clone());
-
-
    }
-
 
    public static final String PROPERTY_game = "game";
 
    private Game game = null;
-
 
    public Game getGame()
    {
@@ -159,28 +144,6 @@ public class Player
       return this;
    }
 
-
-   public static final String PROPERTY_color = "color";
-
-   private String color;
-
-   public String getColor()
-   {
-      return color;
-   }
-
-   public Player setColor(String value)
-   {
-      if (value == null ? this.color != null : ! value.equals(this.color))
-      {
-         String oldValue = this.color;
-         this.color = value;
-         firePropertyChange("color", oldValue, value);
-      }
-      return this;
-   }
-
-
    public static final String PROPERTY_score = "score";
 
    private int score;
@@ -201,10 +164,8 @@ public class Player
       return this;
    }
 
-
    public static final java.util.ArrayList<Pawn> EMPTY_pawns = new java.util.ArrayList<Pawn>()
    { @Override public boolean add(Pawn value){ throw new UnsupportedOperationException("No direct add! Use xy.withPawns(obj)"); }};
-
 
    public Player withPawns(Object... value)
    {
@@ -237,8 +198,6 @@ public class Player
       return this;
    }
 
-
-
    public Player withoutPawns(Object... value)
    {
       if (this.pawns == null || value==null) return this;
@@ -265,16 +224,23 @@ public class Player
       return this;
    }
 
+   public static final String PROPERTY_roundsWon = "roundsWon";
 
-   @Override
-   public String toString()
+   private int roundsWon;
+
+   public int getRoundsWon()
    {
-      StringBuilder result = new StringBuilder();
-
-      result.append(" ").append(this.getColor());
-
-
-      return result.substring(1);
+      return roundsWon;
    }
 
+   public Player setRoundsWon(int value)
+   {
+      if (value != this.roundsWon)
+      {
+         int oldValue = this.roundsWon;
+         this.roundsWon = value;
+         firePropertyChange("roundsWon", oldValue, value);
+      }
+      return this;
+   }
 }

@@ -1,24 +1,19 @@
 package eu.yeger.komi.model;
 
-import javafx.beans.property.*;
-
 import java.beans.PropertyChangeSupport;
 
 import java.beans.PropertyChangeListener;
 
 public class Slot  
 {
-
    public static final String PROPERTY_pawn = "pawn";
 
    private Pawn pawn = null;
-
 
    public Pawn getPawn()
    {
       return this.pawn;
    }
-
 
    public Slot setPawn(Pawn value)
    {
@@ -39,8 +34,6 @@ public class Slot
       }
       return this;
    }
-
-
 
    protected PropertyChangeSupport listeners = null;
 
@@ -92,8 +85,6 @@ public class Slot
       return true;
    }
 
-
-
    public void removeYou()
    {
       this.setBoard(null);
@@ -101,25 +92,17 @@ public class Slot
 
       this.withoutNeighbors(this.getNeighbors().clone());
 
-
       this.withoutNeighbors(this.getNeighbors().clone());
-
-
    }
-
-
-
 
    public static final String PROPERTY_board = "board";
 
    private Board board = null;
 
-
    public Board getBoard()
    {
       return this.board;
    }
-
 
    public Slot setBoard(Board value)
    {
@@ -141,13 +124,6 @@ public class Slot
       return this;
    }
 
-
-
-
-
-
-
-
    public static final String PROPERTY_xPos = "xPos";
 
    private int xPos;
@@ -167,7 +143,6 @@ public class Slot
       }
       return this;
    }
-
 
    public static final String PROPERTY_yPos = "yPos";
 
@@ -189,36 +164,14 @@ public class Slot
       return this;
    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-public static final java.util.ArrayList<Slot> EMPTY_neighbors = new java.util.ArrayList<Slot>()
+   public static final java.util.ArrayList<Slot> EMPTY_neighbors = new java.util.ArrayList<Slot>()
    { @Override public boolean add(Slot value){ throw new UnsupportedOperationException("No direct add! Use xy.withNeighbors(obj)"); }};
 
+   public static final String PROPERTY_neighbors = "neighbors";
 
-public static final String PROPERTY_neighbors = "neighbors";
+   private java.util.ArrayList<Slot> neighbors = null;
 
-private java.util.ArrayList<Slot> neighbors = null;
-
-public java.util.ArrayList<Slot> getNeighbors()
+   public java.util.ArrayList<Slot> getNeighbors()
    {
       if (this.neighbors == null)
       {
@@ -228,7 +181,7 @@ public java.util.ArrayList<Slot> getNeighbors()
       return this.neighbors;
    }
 
-public Slot withNeighbors(Object... value)
+   public Slot withNeighbors(Object... value)
    {
       if(value==null) return this;
       for (Object item : value)
@@ -259,34 +212,22 @@ public Slot withNeighbors(Object... value)
       return this;
    }
 
-
-public Slot withoutNeighbors(Object... value)
-   {
-      if (this.neighbors == null || value==null) return this;
-      for (Object item : value)
-      {
+   public Slot withoutNeighbors(Object... value) {
+      if (this.neighbors == null || value == null) return this;
+      for (Object item : value) {
          if (item == null) continue;
-         if (item instanceof java.util.Collection)
-         {
-            for (Object i : (java.util.Collection) item)
-            {
+         if (item instanceof java.util.Collection) {
+            for (Object i : (java.util.Collection) item) {
                this.withoutNeighbors(i);
             }
-         }
-         else if (item instanceof Slot)
-         {
-            if (this.neighbors.contains(item))
-            {
-               this.neighbors.remove((Slot)item);
-               ((Slot)item).withoutNeighbors(this);
+         } else if (item instanceof Slot) {
+            if (this.neighbors.contains(item)) {
+               this.neighbors.remove((Slot) item);
+               ((Slot) item).withoutNeighbors(this);
                firePropertyChange("neighbors", item, null);
             }
          }
       }
       return this;
    }
-
-
-
-
 }

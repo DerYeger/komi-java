@@ -1,25 +1,19 @@
 package eu.yeger.komi.model;
 
-import javafx.beans.property.*;
-
 import java.beans.PropertyChangeSupport;
 
 import java.beans.PropertyChangeListener;
 
 public class Pawn  
 {
-
-
    public static final String PROPERTY_player = "player";
 
    private Player player = null;
-
 
    public Player getPlayer()
    {
       return this.player;
    }
-
 
    public Pawn setPlayer(Player value)
    {
@@ -41,17 +35,14 @@ public class Pawn
       return this;
    }
 
-
    public static final String PROPERTY_slot = "slot";
 
    private Slot slot = null;
-
 
    public Slot getSlot()
    {
       return this.slot;
    }
-
 
    public Pawn setSlot(Slot value)
    {
@@ -72,7 +63,6 @@ public class Pawn
       }
       return this;
    }
-
 
    protected PropertyChangeSupport listeners = null;
 
@@ -124,31 +114,12 @@ public class Pawn
       return true;
    }
 
-
-
    public void removeYou()
    {
       this.setPlayer(null);
       this.setSlot(null);
 
    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
    public static final String PROPERTY_hasLiberties = "hasLiberties";
 
@@ -169,10 +140,4 @@ public class Pawn
       }
       return this;
    }
-
-
-
-
-
-
 }
