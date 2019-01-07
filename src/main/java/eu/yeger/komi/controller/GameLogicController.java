@@ -5,6 +5,9 @@ import eu.yeger.komi.model.*;
 import javafx.scene.media.AudioClip;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+
 
 class GameLogicController {
 
@@ -56,32 +59,34 @@ class GameLogicController {
     }
 
     private void checkAndRemovePawns(final Player player) {
-        player.getPawns().stream().forEach(this::checkPawn);
+        setLiberties(player);
 
+        //grant score gain
         int scoreGain = (int) player.getPawns().stream().filter(pawn -> !pawn.getHasLiberties()).count();
-
         Player currentPlayer = Model.getInstance().getGame().getCurrentPlayer();
         currentPlayer.setScore(currentPlayer.getScore() + scoreGain);
 
+        //remove pawns without liberties
         new ArrayList<>(player.getPawns()).stream().filter(pawn -> !pawn.getHasLiberties()).forEach(Pawn::removeYou);
 
-        player.getPawns().stream().forEach(pawn -> pawn.setHasLiberties(false));
+        //remove liberties in preparation for next turn
+        player.getPawns().forEach(pawn -> pawn.setHasLiberties(false));
     }
 
-    //if any neighboring slot is empty (and thus a liberty)
-    //notify all neighboring and friendly pawns that they possess that liberty as well
-    private void checkPawn(final Pawn pawn) {
-        if (!pawn.getHasLiberties() && pawn.getSlot().getNeighbors().stream().anyMatch(otherSlot -> otherSlot.getPawn() == null)) {
-            grantAndPropagateLiberties(pawn);
+    private void setLiberties(final Player player) {
+        Queue<Pawn> pawnQueue = new LinkedList<>();
+
+        player.getPawns().stream().filter(pawn -> !pawn.getHasLiberties() && pawn.getSlot().getNeighbors().stream().anyMatch(otherSlot -> otherSlot.getPawn() == null)).forEach(pawn -> {
+            pawn.setHasLiberties(true); //prevents pawns with liberties being added to the queue multiple times
+            pawnQueue.add(pawn);
+        });
+
+        while (!pawnQueue.isEmpty()) {
+            Pawn currentPawn = pawnQueue.poll();
+            currentPawn.setHasLiberties(true);
+            currentPawn.getSlot().getNeighbors().stream()
+                    .filter(slot -> slot.getPawn() != null && slot.getPawn().getPlayer().equals(currentPawn.getPlayer()) && !slot.getPawn().getHasLiberties())
+                    .forEach(slot -> pawnQueue.add(slot.getPawn()));
         }
-    }
-
-    private void grantAndPropagateLiberties(final Pawn pawn) {
-        pawn.setHasLiberties(true);
-
-        //recursively mark all connected pawns belonging to the same player that are not marked already
-        pawn.getSlot().getNeighbors().stream()
-                .filter(slot -> slot.getPawn() != null && slot.getPawn().getPlayer().equals(pawn.getPlayer()) && !slot.getPawn().getHasLiberties())
-                .forEach(slot -> grantAndPropagateLiberties(slot.getPawn()));
     }
 }
