@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class GameController {
 
     public void initGame() {
+        Model.resetModel();
         Game game = Model.getInstance().getGame();
 
         Player blackPlayer = new Player(); //index 0

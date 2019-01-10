@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import static eu.yeger.komi.controller.ControllerUtilities.WINNING_SCORE;
 
 class GameLogicController {
 
@@ -31,10 +32,10 @@ class GameLogicController {
 
     private boolean checkIfRoundIsOver() {
         Game game = Model.getInstance().getGame();
-        if (game.getCurrentPlayer().getScore() >= ControllerUtilities.WINNING_SCORE) {
+        if (game.getCurrentPlayer().getScore() >= WINNING_SCORE) {
             new GameController().nextRound();
             return true;
-        } else if (getWaitingPlayer().getScore() >= ControllerUtilities.WINNING_SCORE) {
+        } else if (getWaitingPlayer().getScore() >= WINNING_SCORE) {
             swapCurrentPlayer();
             new GameController().nextRound();
             return true;

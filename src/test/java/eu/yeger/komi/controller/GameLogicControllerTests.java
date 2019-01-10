@@ -1,10 +1,72 @@
 package eu.yeger.komi.controller;
 
 import eu.yeger.komi.model.*;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 public class GameLogicControllerTests {
+
+    @Test
+    public void gameSimulationTest() {
+        GameController gc = new GameController();
+        GameLogicController glc = new GameLogicController();
+        BoardController bc =  new BoardController();
+
+        gc.initGame();
+
+        Game game = Model.getInstance().getGame();
+
+        Player blackPlayer = game.getPlayers().get(0);
+        Player whitePlayer = game.getPlayers().get(1);
+
+        glc.turn(bc.getSlot(1,0));
+
+        Assert.assertEquals(1, blackPlayer.getPawns().size());
+        Assert.assertEquals(0, whitePlayer.getPawns().size());
+
+        glc.turn(bc.getSlot(0,0));
+
+        Assert.assertEquals(1, blackPlayer.getPawns().size());
+        Assert.assertEquals(1, whitePlayer.getPawns().size());
+
+        glc.turn(bc.getSlot(0,1));
+
+        Assert.assertEquals(2, blackPlayer.getPawns().size());
+        Assert.assertEquals(0, whitePlayer.getPawns().size());
+        Assert.assertEquals(1, blackPlayer.getScore());
+        Assert.assertEquals(0, whitePlayer.getScore());
+
+        glc.turn(bc.getSlot(2,0));
+
+        Assert.assertEquals(2, blackPlayer.getPawns().size());
+        Assert.assertEquals(1, whitePlayer.getPawns().size());
+        Assert.assertEquals(1, blackPlayer.getScore());
+        Assert.assertEquals(0, whitePlayer.getScore());
+
+        glc.turn(bc.getSlot(3,0));
+
+        Assert.assertEquals(3, blackPlayer.getPawns().size());
+        Assert.assertEquals(1, whitePlayer.getPawns().size());
+        Assert.assertEquals(1, blackPlayer.getScore());
+        Assert.assertEquals(0, whitePlayer.getScore());
+
+        glc.turn(bc.getSlot(0,0));
+
+        Assert.assertEquals(3, blackPlayer.getPawns().size());
+        Assert.assertEquals(1, whitePlayer.getPawns().size());
+        Assert.assertEquals(2, blackPlayer.getScore());
+        Assert.assertEquals(0, whitePlayer.getScore());
+
+        glc.turn(bc.getSlot(2,1));
+
+        Assert.assertEquals(1, game.getRound());
+        Assert.assertEquals(1, blackPlayer.getRoundsWon());
+        Assert.assertEquals(0, blackPlayer.getPawns().size());
+        Assert.assertEquals(0, whitePlayer.getPawns().size());
+        Assert.assertEquals(0, blackPlayer.getScore());
+        Assert.assertEquals(0, whitePlayer.getScore());
+    }
 
     @Test
     public void crossRemovalTest() {
@@ -12,7 +74,6 @@ public class GameLogicControllerTests {
         GameLogicController glc = new GameLogicController();
         BoardController bc =  new BoardController();
 
-        Model.resetModel();
         gc.initGame();
 
         Game game = Model.getInstance().getGame();
@@ -50,7 +111,6 @@ public class GameLogicControllerTests {
         GameLogicController glc = new GameLogicController();
         BoardController bc =  new BoardController();
 
-        Model.resetModel();
         gc.initGame();
 
         Game game = Model.getInstance().getGame();

@@ -38,9 +38,11 @@ public class SlotController {
         int xPos = slot.getXPos();
         int yPos = slot.getYPos();
 
+        int boardSize = Model.getInstance().getGame().getBoard().getSize();
+
         topLine.setVisible(yPos > 0);
-        rightLine.setVisible(xPos < ControllerUtilities.BOARD_SIZE - 1);
-        bottomLine.setVisible(yPos < ControllerUtilities.BOARD_SIZE - 1);
+        rightLine.setVisible(xPos < boardSize - 1);
+        bottomLine.setVisible(yPos < boardSize - 1);
         leftLine.setVisible(xPos > 0);
 
         addHandlers();

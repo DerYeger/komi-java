@@ -8,7 +8,6 @@ import eu.yeger.komi.model.*;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.NodeOrientation;
 import javafx.geometry.Pos;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
 
@@ -41,9 +40,6 @@ public class ViewBuilder {
 
         }
         gridPane.setAlignment(Pos.CENTER);
-//        gridPane.setBackground(new Background(new BackgroundImage(new Image(ViewBuilder.class.getResource("wood.bmp").toExternalForm(),
-//                512, 512, true, true),
-//                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         return gridPane;
     }
 
