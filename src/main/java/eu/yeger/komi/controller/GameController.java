@@ -31,9 +31,9 @@ public class GameController {
         game.setCurrentPlayer(Model.getInstance().getGame().getPlayers().get(0));
 
         //removes leftover pawns
-        game.getPlayers().stream().forEach(player -> {
+        game.getPlayers().forEach(player -> {
             player.setScore(0);
-            new ArrayList<>(player.getPawns()).stream().forEach(Pawn::removeYou);
+            new ArrayList<>(player.getPawns()).forEach(Pawn::removeYou);
         });
     }
 }

@@ -11,25 +11,25 @@ import javafx.scene.shape.Line;
 public class SlotController {
 
     @FXML
-    Button slotButton;
+    private Button slotButton;
 
     @FXML
-    Line topLine;
+    private Line topLine;
 
     @FXML
-    Line rightLine;
+    private Line rightLine;
 
     @FXML
-    Line bottomLine;
+    private Line bottomLine;
 
     @FXML
-    Line leftLine;
+    private Line leftLine;
 
     @FXML
-    Circle pawnCircle;
+    private Circle pawnCircle;
 
     @FXML
-    Circle selectionCircle;
+    private Circle selectionCircle;
 
     private Slot slot;
 

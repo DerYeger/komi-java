@@ -6,18 +6,14 @@ import eu.yeger.komi.model.Player;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
 
 public class GameScreenController {
 
     @FXML
-    VBox gameScreenVBox;
+    private Label blackRoundsWonLabel;
 
     @FXML
-    Label blackRoundsWonLabel;
-
-    @FXML
-    Label whiteRoundsWonLabel;
+    private Label whiteRoundsWonLabel;
 
     private Player blackPlayer;
 
