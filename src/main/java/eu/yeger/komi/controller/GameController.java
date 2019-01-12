@@ -5,9 +5,9 @@ import eu.yeger.komi.model.Model;
 import eu.yeger.komi.model.Pawn;
 import eu.yeger.komi.model.Player;
 
-import javafx.scene.media.AudioClip;
-
 import java.util.ArrayList;
+
+import static eu.yeger.komi.controller.ControllerUtilities.BOARD_SIZE;
 
 public class GameController {
 
@@ -20,11 +20,11 @@ public class GameController {
         game.withPlayers(blackPlayer, whitePlayer);
         game.setCurrentPlayer(Model.getInstance().getGame().getPlayers().get(0));
 
-        new BoardController().initBoard();
+        new BoardController().initBoard(game, BOARD_SIZE);
     }
 
     void nextRound() {
-        new AudioClip(getClass().getResource("/sounds/round_over.wav").toExternalForm()).play();
+        AudioController.playRoundOverAudioClip();
 
         Game game = Model.getInstance().getGame();
         game.setRound(game.getRound() + 1);
