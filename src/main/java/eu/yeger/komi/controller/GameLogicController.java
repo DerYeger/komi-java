@@ -15,14 +15,22 @@ class GameLogicController {
 
         AudioController.playPawnPlacedAudioClip();
 
-        completeTurnForPlayer(getCurrentPlayer(), getWaitingPlayer());
-        if(roundIsOver()) return;
+        Player currentPlayer = getCurrentPlayer();
+        Player waitingPlayer = getWaitingPlayer();
 
-        swapCurrentPlayer();
+        completeTurnForPlayer(currentPlayer, waitingPlayer);
+        if(playerHasReachedScoreLimit(currentPlayer)) {
+            new GameController().nextRoundWithWinner(currentPlayer);
+            return;
+        }
 
         //checks for suicide moves
-        completeTurnForPlayer(getCurrentPlayer(), getWaitingPlayer());
-        roundIsOver();
+        completeTurnForPlayer(waitingPlayer, currentPlayer);
+        if (playerHasReachedScoreLimit(waitingPlayer)) {
+            new GameController().nextRoundWithWinner(waitingPlayer);
+        } else {
+            swapCurrentPlayer();
+        }
     }
 
     private void placePawn(final Player player, final Slot slot) {
@@ -30,11 +38,11 @@ class GameLogicController {
                 .setSlot(slot);
     }
 
-    private void completeTurnForPlayer(final Player currentPlayer, final Player waitingPlayer) {
-        grantLibertiesToPawns(waitingPlayer);
-        grantScore(currentPlayer, waitingPlayer);
-        removePawnsWithoutLiberties(waitingPlayer);
-        removeLibertiesFromPawns(waitingPlayer);
+    private void completeTurnForPlayer(final Player player, final Player opponent) {
+        grantLibertiesToPawns(opponent);
+        grantScore(player, opponent);
+        removePawnsWithoutLiberties(opponent);
+        removeLibertiesFromPawns(opponent);
     }
 
     private void grantLibertiesToPawns(final Player player) {
@@ -96,16 +104,7 @@ class GameLogicController {
         Model.getInstance().getGame().setCurrentPlayer(getWaitingPlayer());
     }
 
-    private boolean roundIsOver() {
-        Game game = Model.getInstance().getGame();
-        if (game.getCurrentPlayer().getScore() >= WINNING_SCORE) {
-            new GameController().nextRound();
-            return true;
-        } else if (getWaitingPlayer().getScore() >= WINNING_SCORE) {
-            swapCurrentPlayer();
-            new GameController().nextRound();
-            return true;
-        }
-        return false;
+    private boolean playerHasReachedScoreLimit(final Player player) {
+        return player.getScore() >= WINNING_SCORE;
     }
 }

@@ -23,12 +23,12 @@ public class GameController {
         new BoardController().initBoard(game, BOARD_SIZE);
     }
 
-    void nextRound() {
+    void nextRoundWithWinner(final Player winner) {
         AudioController.playRoundOverAudioClip();
 
         Game game = Model.getInstance().getGame();
         game.setRound(game.getRound() + 1);
-        game.getCurrentPlayer().setRoundsWon(game.getCurrentPlayer().getRoundsWon() + 1);
+        winner.setRoundsWon(winner.getRoundsWon() + 1);
         game.setCurrentPlayer(Model.getInstance().getGame().getPlayers().get(0));
 
         //removes leftover pawns
