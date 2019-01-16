@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class GameController {
 
-
     public void initGame(final int boardSize, final int requiredScore, final int requiredRounds ) {
         Model.resetModel();
         Game game = Model.getInstance().getGame();
@@ -26,7 +25,7 @@ public class GameController {
 
         Game game = Model.getInstance().getGame();
         game.setRound(game.getRound() + 1)
-                .setCurrentPlayer(Model.getInstance().getGame().getPlayers().get(0));
+                .setCurrentPlayer(Model.getInstance().getGame().getPlayers().get(game.getRound() % 2));
         winner.setRoundsWon(winner.getRoundsWon() + 1);
 
         //removes leftover pawns

@@ -15,11 +15,11 @@ import static eu.yeger.komi.util.ThrowingEventHandlerWrapper.throwingEventHandle
 
 public class StartScreenController {
 
-    private static final Integer[] BOARD_SIZES = {5, 7, 9};
+    private static final Integer[] BOARD_SIZES = {5, 7, 9, 11};
 
-    private static final Integer[] REQUIRED_SCORES = {3, 5, 7};
+    private static final Integer[] REQUIRED_SCORES = {3, 5, 7, 9};
 
-    private static final Integer[] REQUIRED_ROUNDS = {1, 2, 3, 4, 5};
+    private static final Integer[] REQUIRED_ROUNDS = {2, 4, 6, 8};
 
     @FXML
     private ChoiceBox<Integer> boardSizeChoiceBox;

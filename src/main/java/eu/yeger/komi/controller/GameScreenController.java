@@ -69,6 +69,4 @@ public class GameScreenController {
     private void updateWhiteScoreLabel() {
         whiteRoundsWonLabel.setText(Integer.toString(whitePlayer.getRoundsWon()));
     }
-
-
 }
