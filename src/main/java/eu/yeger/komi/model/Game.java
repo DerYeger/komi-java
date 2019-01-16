@@ -118,8 +118,11 @@ public class Game
    {
       this.setBoard(null);
       this.setCurrentPlayer(null);
+      this.setWinner(null);
 
       this.withoutPlayers(this.getPlayers().clone());
+
+
    }
 
    public static final String PROPERTY_players = "players";
@@ -221,4 +224,89 @@ public class Game
       }
       return this;
    }
+
+
+   public static final String PROPERTY_roundsToWin = "roundsToWin";
+
+   private int roundsToWin;
+
+   public int getRoundsToWin()
+   {
+      return roundsToWin;
+   }
+
+   public Game setRoundsToWin(int value)
+   {
+      if (value != this.roundsToWin)
+      {
+         int oldValue = this.roundsToWin;
+         this.roundsToWin = value;
+         firePropertyChange("roundsToWin", oldValue, value);
+      }
+      return this;
+   }
+
+
+   public static final String PROPERTY_scoreToWin = "scoreToWin";
+
+   private int scoreToWin;
+
+   public int getScoreToWin()
+   {
+      return scoreToWin;
+   }
+
+   public Game setScoreToWin(int value)
+   {
+      if (value != this.scoreToWin)
+      {
+         int oldValue = this.scoreToWin;
+         this.scoreToWin = value;
+         firePropertyChange("scoreToWin", oldValue, value);
+      }
+      return this;
+   }
+
+
+
+
+
+
+   public static final String PROPERTY_winner = "winner";
+
+   private Player winner = null;
+
+   public Player getWinner()
+   {
+      return this.winner;
+   }
+
+   public Game setWinner(Player value)
+   {
+      if (this.winner != value)
+      {
+         Player oldValue = this.winner;
+         if (this.winner != null)
+         {
+            this.winner = null;
+            oldValue.setWonGame(null);
+         }
+         this.winner = value;
+         if (value != null)
+         {
+            value.setWonGame(this);
+         }
+         firePropertyChange("winner", oldValue, value);
+      }
+      return this;
+   }
+
+
+
+
+
+
+
+
+
 }

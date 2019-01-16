@@ -110,8 +110,11 @@ public class Player
    {
       this.setGame(null);
       this.setCurrentGame(null);
+      this.setWonGame(null);
 
       this.withoutPawns(this.getPawns().clone());
+
+
    }
 
    public static final String PROPERTY_game = "game";
@@ -243,4 +246,47 @@ public class Player
       }
       return this;
    }
+
+
+
+
+
+
+   public static final String PROPERTY_wonGame = "wonGame";
+
+   private Game wonGame = null;
+
+   public Game getWonGame()
+   {
+      return this.wonGame;
+   }
+
+   public Player setWonGame(Game value)
+   {
+      if (this.wonGame != value)
+      {
+         Game oldValue = this.wonGame;
+         if (this.wonGame != null)
+         {
+            this.wonGame = null;
+            oldValue.setWinner(null);
+         }
+         this.wonGame = value;
+         if (value != null)
+         {
+            value.setWinner(this);
+         }
+         firePropertyChange("wonGame", oldValue, value);
+      }
+      return this;
+   }
+
+
+
+
+
+
+
+
+
 }

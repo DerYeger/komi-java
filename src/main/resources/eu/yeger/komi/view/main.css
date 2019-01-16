@@ -1,3 +1,12 @@
+.button {
+    -fx-font-size: 30;
+    -fx-background-color: #777777;
+}
+
 .label {
+    -fx-font-size: 30;
+}
+
+#title-label {
     -fx-font-size: 45;
 }

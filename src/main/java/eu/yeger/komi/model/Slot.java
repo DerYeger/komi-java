@@ -92,7 +92,10 @@ public class Slot
 
       this.withoutNeighbors(this.getNeighbors().clone());
 
+
       this.withoutNeighbors(this.getNeighbors().clone());
+
+
    }
 
    public static final String PROPERTY_board = "board";
@@ -212,22 +215,41 @@ public class Slot
       return this;
    }
 
-   public Slot withoutNeighbors(Object... value) {
-      if (this.neighbors == null || value == null) return this;
-      for (Object item : value) {
+   public Slot withoutNeighbors(Object... value)
+   {
+      if (this.neighbors == null || value==null) return this;
+      for (Object item : value)
+      {
          if (item == null) continue;
-         if (item instanceof java.util.Collection) {
-            for (Object i : (java.util.Collection) item) {
+         if (item instanceof java.util.Collection)
+         {
+            for (Object i : (java.util.Collection) item)
+            {
                this.withoutNeighbors(i);
             }
-         } else if (item instanceof Slot) {
-            if (this.neighbors.contains(item)) {
-               this.neighbors.remove((Slot) item);
-               ((Slot) item).withoutNeighbors(this);
+         }
+         else if (item instanceof Slot)
+         {
+            if (this.neighbors.contains(item))
+            {
+               this.neighbors.remove((Slot)item);
+               ((Slot)item).withoutNeighbors(this);
                firePropertyChange("neighbors", item, null);
             }
          }
       }
       return this;
    }
+
+
+
+
+
+
+
+
+
+
+
+
 }

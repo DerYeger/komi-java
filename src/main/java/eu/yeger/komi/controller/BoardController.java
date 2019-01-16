@@ -7,13 +7,13 @@ import eu.yeger.komi.model.Slot;
 
 class BoardController {
 
-    void initBoard(final Game game, final int size) {
+    void initBoard(final Game game, final int boardSize) {
         Board board = new Board();
         board.setGame(game)
-                .setSize(size);
+                .setSize(boardSize);
 
-        for (int y = 0; y < size; y++) {
-            for (int x = 0; x < size; x++) {
+        for (int y = 0; y < boardSize; y++) {
+            for (int x = 0; x < boardSize; x++) {
                 new Slot().setBoard(board)
                         .setXPos(x)
                         .setYPos(y)

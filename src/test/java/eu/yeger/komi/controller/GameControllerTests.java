@@ -11,7 +11,7 @@ public class GameControllerTests {
     public void initGameTest() {
         GameController gc = new GameController();
 
-        gc.initGame();
+        gc.initGame(5, 3, 3);
 
         Game game = Model.getInstance().getGame();
 

@@ -170,22 +170,41 @@ public class Board
       return this;
    }
 
-   public Board withoutSlots(Object... value) {
-      if (this.slots == null || value == null) return this;
-      for (Object item : value) {
+   public Board withoutSlots(Object... value)
+   {
+      if (this.slots == null || value==null) return this;
+      for (Object item : value)
+      {
          if (item == null) continue;
-         if (item instanceof java.util.Collection) {
-            for (Object i : (java.util.Collection) item) {
+         if (item instanceof java.util.Collection)
+         {
+            for (Object i : (java.util.Collection) item)
+            {
                this.withoutSlots(i);
             }
-         } else if (item instanceof Slot) {
-            if (this.slots.contains(item)) {
-               this.slots.remove((Slot) item);
-               ((Slot) item).setBoard(null);
+         }
+         else if (item instanceof Slot)
+         {
+            if (this.slots.contains(item))
+            {
+               this.slots.remove((Slot)item);
+               ((Slot)item).setBoard(null);
                firePropertyChange("slots", item, null);
             }
          }
       }
       return this;
    }
+
+
+
+
+
+
+
+
+
+
+
+
 }

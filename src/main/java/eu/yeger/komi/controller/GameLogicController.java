@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import static eu.yeger.komi.controller.ControllerUtilities.WINNING_SCORE;
-
 class GameLogicController {
 
     void turn(final Slot slot) {
@@ -105,6 +103,6 @@ class GameLogicController {
     }
 
     private boolean playerHasReachedScoreLimit(final Player player) {
-        return player.getScore() >= WINNING_SCORE;
+        return player.getScore() >= Model.getInstance().getGame().getScoreToWin();
     }
 }

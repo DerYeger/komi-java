@@ -1,7 +1,7 @@
 package eu.yeger.komi;
 
-import eu.yeger.komi.controller.GameController;
-import eu.yeger.komi.view.ViewBuilder;
+import eu.yeger.komi.view.StartScreenBuilder;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -14,9 +14,8 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        GameController gc = new GameController();
-        gc.initGame();
-        primaryStage.setScene(new Scene(ViewBuilder.buildGameScreenVBox()));
+        primaryStage.setScene(new Scene(StartScreenBuilder.getStartScreen(primaryStage)));
+        primaryStage.sizeToScene();
         primaryStage.show();
     }
 }

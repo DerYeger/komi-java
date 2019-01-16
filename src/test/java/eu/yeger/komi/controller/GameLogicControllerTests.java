@@ -13,7 +13,7 @@ public class GameLogicControllerTests {
         GameLogicController glc = new GameLogicController();
         BoardController bc =  new BoardController();
 
-        gc.initGame();
+        gc.initGame(5, 3, 3);
 
         Game game = Model.getInstance().getGame();
 
@@ -74,7 +74,7 @@ public class GameLogicControllerTests {
         GameLogicController glc = new GameLogicController();
         BoardController bc =  new BoardController();
 
-        gc.initGame();
+        gc.initGame(5, 3, 3);
 
         Game game = Model.getInstance().getGame();
 
@@ -111,7 +111,7 @@ public class GameLogicControllerTests {
         GameLogicController glc = new GameLogicController();
         BoardController bc =  new BoardController();
 
-        gc.initGame();
+        gc.initGame(5, 3, 3);
 
         Game game = Model.getInstance().getGame();
 

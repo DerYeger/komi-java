@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="gameScreenVBox" alignment="TOP_CENTER" spacing="10.0" style="-fx-background-color: grey;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.yeger.komi.controller.GameScreenController">
+<VBox fx:id="gameScreenVBox" alignment="TOP_CENTER" spacing="10.0" style="-fx-background-color: #888888;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.yeger.komi.controller.GameScreenController">
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>

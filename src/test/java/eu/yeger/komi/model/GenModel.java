@@ -26,6 +26,8 @@ public class GenModel {
 
         //attributes
         game.buildAttribute("round", ClassModelBuilder.INT);
+        game.buildAttribute("roundsToWin", ClassModelBuilder.INT);
+        game.buildAttribute("scoreToWin", ClassModelBuilder.INT);
 
         board.buildAttribute("size", ClassModelBuilder.INT);
 
@@ -42,6 +44,7 @@ public class GenModel {
         game.buildAssociation(board, "board", ClassModelBuilder.ONE, "game", ClassModelBuilder.ONE);
         game.buildAssociation(player, "players", ClassModelBuilder.MANY, "game", ClassModelBuilder.ONE);
         game.buildAssociation(player, "currentPlayer", ClassModelBuilder.ONE, "currentGame", ClassModelBuilder.ONE);
+        game.buildAssociation(player, "winner", ClassModelBuilder.ONE, "wonGame", ClassModelBuilder.ONE);
 
         board.buildAssociation(slot, "slots", ClassModelBuilder.MANY, "board", ClassModelBuilder.ONE);
 

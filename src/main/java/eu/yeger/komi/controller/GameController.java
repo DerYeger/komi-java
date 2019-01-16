@@ -7,34 +7,49 @@ import eu.yeger.komi.model.Player;
 
 import java.util.ArrayList;
 
-import static eu.yeger.komi.controller.ControllerUtilities.BOARD_SIZE;
-
 public class GameController {
 
-    public void initGame() {
+
+    public void initGame(final int boardSize, final int requiredScore, final int requiredRounds ) {
         Model.resetModel();
         Game game = Model.getInstance().getGame();
 
-        Player blackPlayer = new Player(); //index 0
-        Player whitePlayer = new Player(); //index 1
-        game.withPlayers(blackPlayer, whitePlayer);
-        game.setCurrentPlayer(Model.getInstance().getGame().getPlayers().get(0));
+        game.setScoreToWin(requiredScore).setRoundsToWin(requiredRounds)
+                .withPlayers(new Player(), new Player())
+                .setCurrentPlayer(Model.getInstance().getGame().getPlayers().get(0));
 
-        new BoardController().initBoard(game, BOARD_SIZE);
+        new BoardController().initBoard(game, boardSize);
     }
 
     void nextRoundWithWinner(final Player winner) {
         AudioController.playRoundOverAudioClip();
 
         Game game = Model.getInstance().getGame();
-        game.setRound(game.getRound() + 1);
+        game.setRound(game.getRound() + 1)
+                .setCurrentPlayer(Model.getInstance().getGame().getPlayers().get(0));
         winner.setRoundsWon(winner.getRoundsWon() + 1);
-        game.setCurrentPlayer(Model.getInstance().getGame().getPlayers().get(0));
 
         //removes leftover pawns
         game.getPlayers().forEach(player -> {
             player.setScore(0);
             new ArrayList<>(player.getPawns()).forEach(Pawn::removeYou);
         });
+
+        if (playerHasReachedRoundLimit(winner)) game.setWinner(winner);
+    }
+
+
+    private boolean playerHasReachedRoundLimit(final Player player) {
+        return player.getRoundsWon() == Model.getInstance().getGame().getRoundsToWin();
+    }
+
+    public void newGame() {
+        Game game = Model.getInstance().getGame();
+
+        game.setRound(0)
+                .setWinner(null)
+                .getPlayers().forEach(player ->
+                    player.setRoundsWon(0)
+                            .setScore(0));
     }
 }
